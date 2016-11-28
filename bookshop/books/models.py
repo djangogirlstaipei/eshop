@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class Category(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Book(models.Model):
     # general fields
     name = models.CharField(max_length=255)
@@ -10,6 +14,11 @@ class Book(models.Model):
     )
     original_price = models.PositiveIntegerField(default=0)
     price = models.PositiveIntegerField(default=0)
+    category = models.ForeignKey(
+        Category,
+        null=True,
+        blank=True
+    )
 
     # status and time related fields
     STATUS_CHOICES = (
