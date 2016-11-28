@@ -1,6 +1,10 @@
 from django.db import models
 
 
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+
+
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
@@ -17,6 +21,10 @@ class Book(models.Model):
     category = models.ForeignKey(
         Category,
         null=True,
+        blank=True
+    )
+    tags = models.ManyToManyField(
+        Tag,
         blank=True
     )
 
