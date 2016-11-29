@@ -7,12 +7,20 @@ class Tag(models.Model):
     def __str__(self):
         return self.name
 
+    class Meta:
+        verbose_name = '標籤'
+        verbose_name_plural = '標籤'
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = '分類'
+        verbose_name_plural = '分類'
 
 
 class Book(models.Model):
@@ -77,3 +85,7 @@ class Book(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta():
+        verbose_name = '書籍'
+        verbose_name_plural = '書籍'
