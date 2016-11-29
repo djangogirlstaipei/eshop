@@ -24,6 +24,9 @@ class Category(models.Model):
 
 
 class Book(models.Model):
+    def __str__(self):
+        return self.name
+
     # general fields
     name = models.CharField(verbose_name='名稱', max_length=255)
     description = models.TextField(
@@ -95,6 +98,6 @@ class Book(models.Model):
     def __str__(self):
         return self.name
 
-    class Meta():
+    class Meta:
         verbose_name = '書籍'
         verbose_name_plural = '書籍'
