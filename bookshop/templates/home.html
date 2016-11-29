@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+  {% for book in book_list %}
+    <div>
+      {{ book.name }} ${{ book.price }}
+    </div>
+  {% endfor %}
+</body>
+</html>
