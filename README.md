@@ -1,11 +1,15 @@
 # Django 實戰
 自己的購物網站自己做
 
-
 ### Requirements
 
 - Python 3.5+
 - Django 1.10+
+
+
+## Slide
+
+[第一堂 - 商品管理](http://www.slideshare.net/flywindy/django-69634386)
 
 
 ## Getting Started
