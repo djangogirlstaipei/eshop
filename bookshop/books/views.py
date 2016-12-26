@@ -1,12 +1,14 @@
 from django.views.generic import ListView
-from .models import Book
+from books.models import Book, Category
 
 
-# def home(request):
-#     book_list = Book.objects.all()
-#     return render(request, 'home.html', {
-#         'book_list': book_list,
-#     })
+class BooksListView(ListView):
 
+    model = Book
 
-home = ListView.as_view(model=Book)
+    def get_context_data(self, **kwargs):
+        context = super(BooksListView, self).get_context_data(**kwargs)
+        context['categories'] = Category.objects.all()
+        return context
+
+books_view = BooksListView.as_view()
