@@ -9,20 +9,43 @@
 </head>
 <body>
 
+
   <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-12">
+
+        <!-- show where am I -->
+        {% if view.kwargs.category %}
+          <h3> {{ view.kwargs.category }}</h3>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+    <div class="row">
 
     <div class="col-xs-3">
 
+      <!-- category list -->
       <ul class="list-group">
-        {% for category in categories %}
-          <li class="list-group-item">{{ category.name }}</li>
+
+        {% for category in view.categories %}
+          <li class="list-group-item">
+            <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
+          </li>
         {% endfor %}
+
       </ul>
 
     </div>
 
     <div class="col-xs-9">
 
+
+    <!-- book list -->
     {% for book in book_list %}
 
       <div class="panel panel-default">
@@ -45,29 +68,34 @@
 
     {% endfor %}
 
-      <br/>
 
-      {% if is_paginated %}
+    {% if is_paginated %}
 
-        <div class="pagination">
-          <span class="step-links">
-              {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-              {% endif %}
+      <!-- pagination -->
+      <div class="pagination">
 
-            <span class="current">
-                  Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-              </span>
+        <span class="step-links">
 
-            {% if page_obj.has_next %}
-              <a href="?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
           </span>
-        </div>
 
-      {% endif %}
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+
+        </span>
+
+      </div>
+
+    {% endif %}
 
 
+    </div>
     </div>
   </div>
 
