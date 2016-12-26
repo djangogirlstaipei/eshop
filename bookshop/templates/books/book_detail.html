@@ -1,0 +1,39 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+  <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap-theme.css'%}">
+</head>
+<body>
+
+
+  <div class="container">
+
+    <div class="row">
+
+      <div class="col-xs-6 col-xs-offset-3">
+
+        <div class="page-header">
+          <h1>{{ book.name}} <small>{{ book.author }}, ${{ book.price }}</small></h1>
+        </div>
+
+        <ul>
+          <li> 分類 {{ book.category}}
+          <li> 原價 {{ book.original_price }}
+          <li> 狀態 {{ book.get_status_display}}
+          <li> 出版社 {{ book.publisher }}
+        </ul>
+
+        <div class="panel panel-primary">
+          <div class="panel-body"> {{ book.description }} </div>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</body>
+

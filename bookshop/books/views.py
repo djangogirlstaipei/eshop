@@ -1,9 +1,8 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from books.models import Book, Category
 
 
 class BooksListView(ListView):
-
     model = Book
 
     paginate_by = 10
@@ -12,7 +11,6 @@ class BooksListView(ListView):
         return Category.objects.all()
 
     def get_queryset(self):
-
         query_set = super(BooksListView, self).get_queryset()
 
         category = self.kwargs.get('category')
@@ -23,4 +21,11 @@ class BooksListView(ListView):
         return query_set
 
 
-books_view = BooksListView.as_view()
+book_list_view = BooksListView.as_view()
+
+
+class BookDetail(DetailView):
+    model = Book
+
+
+book_detail_view = BookDetail.as_view()
