@@ -9,5 +9,4 @@ from .models import Book
 #     })
 
 
-home = ListView.as_view(model=Book,
-                        template_name='home.html')
+home = ListView.as_view(model=Book)

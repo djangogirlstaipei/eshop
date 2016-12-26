@@ -1,0 +1,40 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap.css'%}">
+  <link rel="stylesheet" href="{% static 'bootstrap-3.3.7-dist/css/bootstrap-theme.css'%}">
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="col-sm-4">
+
+    </div>
+
+    <div class="col-sm-8">
+
+    </div>
+    {% for book in book_list %}
+
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+
+          <h3 class="panel-title"> {{ book.name}} </h3>
+
+        </div>
+
+        <div class="panel-body">
+        </div>
+
+      </div> <!-- end of panel--->
+
+    {% endfor %}
+  </div>
+
+</body>
+</html>
