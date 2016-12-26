@@ -6,6 +6,8 @@ class BooksListView(ListView):
 
     model = Book
 
+    paginate_by = 10
+
     def get_context_data(self, **kwargs):
         context = super(BooksListView, self).get_context_data(**kwargs)
         context['categories'] = Category.objects.all()
