@@ -92,3 +92,6 @@ VENV/
 
 # PyCharm
 .idea
+
+# vagrant
+.vagrant
