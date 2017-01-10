@@ -19,7 +19,11 @@ from django.contrib import admin
 from books import views
 
 urlpatterns = [
+
     url(r'^$', views.book_list_view, name='home'),
+
     url(r'^books/(?P<category>.*)$', views.book_list_view, name='book_list'),
+    url(r'^book/(?P<pk>\d+)$', views.book_detail_view, name='book_detail'),
+
     url(r'^admin/', admin.site.urls),
 ]

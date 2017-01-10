@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,12 +20,25 @@
 
     <div class="row">
 
+      <div class="col-xs-12">
+
+        <!-- show where am I -->
+        {% if view.kwargs.category %}
+          <h3> {{ view.kwargs.category }}</h3>
+        {% endif %}
+
+      </div>
+
+    </div>
+
+    <div class="row">
+
     <div class="col-xs-3">
 
       <!-- category list -->
       <ul class="list-group">
 
-        {% for category in categories %}
+        {% for category in view.categories %}
           <li class="list-group-item">
             <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
           </li>
@@ -46,25 +60,31 @@
 
           <h3 class="panel-title">
 
+            <a href="{% url 'book_detail' pk=book.pk %}">
               {{ book.name}} | {% if book.author %} 作者: {{ book.author }} {% endif %}
+            </a>
 
           </h3>
 
         </div>
 
         <div class="panel-body">
+          <a href="{% url 'book_detail' pk=book.pk %}">
           {{ book.description|truncatechars:50 }}
+          </a>
         </div>
 
         <div class="panel-footer">
           {{ book.publisher}}, {{ book.price}}, {{ book.isbn}}
         </div>
 
-      </div> <!-- end of panel--->
+      </div>
+      <!-- end of panel--->
 
     {% endfor %}
 
 
+    {% if is_paginated %}
 
       <!-- pagination -->
       <div class="pagination">
@@ -87,6 +107,7 @@
 
       </div>
 
+    {% endif %}
 
 
     </div>
