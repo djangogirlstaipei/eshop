@@ -3,3 +3,5 @@ Django==1.10.4
 gunicorn==19.6.0
 whitenoise==3.2.2
 psycopg2==2.6.2
+Jinja2==2.8.1
+Fabric3==1.13.1.post1
