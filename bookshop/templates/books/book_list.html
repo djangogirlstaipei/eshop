@@ -21,7 +21,7 @@
       <div class="col-xs-3">
         <!-- category list -->
         <ul class="list-group">
-          {% for category in categories %}
+          {% for category in view.categories %}
             <li class="list-group-item">
               <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
             </li>
