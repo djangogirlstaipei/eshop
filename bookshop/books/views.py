@@ -1,4 +1,4 @@
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Book, Category
 
@@ -23,3 +23,10 @@ class BooksListView(ListView):
 
 
 book_list_view = BooksListView.as_view()
+
+
+class BookDetail(DetailView):
+    model = Book
+
+
+book_detail_view = BookDetail.as_view()
