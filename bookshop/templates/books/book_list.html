@@ -1,101 +1,82 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+{% block content %}
+  <div class="row">
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
+    <div class="col-xs-12">
 
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-xs-12">
-
-        <!-- show where am I -->
-        {% if view.kwargs.category %}
-          <h3> {{ view.kwargs.category }}</h3>
-        {% endif %}
-
-      </div>
-
-    </div>
-
-    <div class="row">
-
-      <div class="col-xs-3">
-        <!-- category list -->
-        <ul class="list-group">
-          {% for category in view.categories %}
-            <li class="list-group-item">
-              <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="col-xs-9">
-        <!-- book list -->
-        {% for book in book_list %}
-          <div class="panel panel-default">
-
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <a href="{% url 'book_detail' pk=book.pk %}">
-                  {{ book.name}} | {% if book.author %} 作者: {{ book.author }} {% endif %}
-                </a>
-              </h3>
-            </div>
-
-            <div class="panel-body">
-              <a href="{% url 'book_detail' pk=book.pk %}">
-                {{ book.description|truncatechars:50 }}
-              </a>
-            </div>
-
-            <div class="panel-footer">
-              {{ book.publisher}}, {{ book.price}}, {{ book.isbn}}
-            </div>
-
-          </div> <!-- end of panel--->
-        {% endfor %}
-
-        <!-- pagination -->
-        {% if is_paginated %}
-        <div class="pagination">
-
-          <span class="step-links">
-
-            {% if page_obj.has_previous %}
-              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-            {% endif %}
-
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
-
-            {% if page_obj.has_next %}
-              <a href="?page={{ page_obj.next_page_number }}">next</a>
-            {% endif %}
-
-          </span>
-
-        </div> <!-- end of pagination--->
-        {% endif %}
-
-      </div>
+      <!-- show where am I -->
+      {% if view.kwargs.category %}
+        <h3> {{ view.kwargs.category }}</h3>
+      {% endif %}
 
     </div>
 
   </div>
 
-</body>
-</html>
+  <div class="row">
+
+    <div class="col-xs-3">
+      <!-- category list -->
+      <ul class="list-group">
+        {% for category in view.categories %}
+          <li class="list-group-item">
+            <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="col-xs-9">
+      <!-- book list -->
+      {% for book in book_list %}
+        <div class="panel panel-default">
+
+          <div class="panel-heading">
+            <h3 class="panel-title">
+              <a href="{% url 'book_detail' pk=book.pk %}">
+                {{ book.name}} | {% if book.author %} 作者: {{ book.author }} {% endif %}
+              </a>
+            </h3>
+          </div>
+
+          <div class="panel-body">
+            <a href="{% url 'book_detail' pk=book.pk %}">
+              {{ book.description|truncatechars:50 }}
+            </a>
+          </div>
+
+          <div class="panel-footer">
+            {{ book.publisher}}, {{ book.price}}, {{ book.isbn}}
+          </div>
+
+        </div> <!-- end of panel--->
+      {% endfor %}
+
+      <!-- pagination -->
+      {% if is_paginated %}
+      <div class="pagination">
+
+        <span class="step-links">
+
+          {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+          {% endif %}
+
+          <span class="current">
+              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+          {% endif %}
+
+        </span>
+
+      </div> <!-- end of pagination--->
+      {% endif %}
+
+    </div>
+
+  </div>
+{% endblock content %}
