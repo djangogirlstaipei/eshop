@@ -69,3 +69,8 @@ To log in, you need to create a superuser:
 	python manage.py createsuperuser
 
 After setup the username and password, you can login: [http://localhost:8000/admin/](http://localhost:8000/admin/)
+
+## Deployment
+
+* [Deploy to heroku](HEROKU.md)
+* [Deploy to self-hosted server](DEPLOY.md)
