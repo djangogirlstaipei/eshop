@@ -1,0 +1,10 @@
+[Unit]
+Description=gunicorn service of
+After=syslog.target
+
+[Service]
+ExecStart={{ gunicorn_script }}
+WorkingDirectory={{ project_dir }}
+
+[Install]
+WantedBy=multi-user.target
