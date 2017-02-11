@@ -4,7 +4,7 @@
   <div class="row">
     <div class="col-sm-3 col-lg-2 hidden-xs">
       <!-- category list -->
-      <div class="list-group">
+      <div class="list-group sidebar-category">
         {% for category in view.categories %}
           <a class="list-group-item {% if view.kwargs.category == category.name %}active{% endif %}"
              href="{% url 'book_list' category=category.name %}"> {{ category.name }}
@@ -21,13 +21,16 @@
       <div class="row">
         {% for book in book_list %}
         <div class="col-sm-6 col-md-4 col-lg-3">
-            <div style="height: 350px;">
+            <div class="product product-brief">
               <a href="{% url 'book_detail' pk=book.pk %}" class="thumbnail">
                 <img src="http://placehold.it/150x200">
               </a>
               <a href="{% url 'book_detail' pk=book.pk %}">{{ book.name|truncatechars:25 }}</a>
-              <div>作者: {{ book.author }}</div>
-              <div> 原價: {{ book.original_price }} 特價: {{ book.price }}</div>
+              <div class="product-label author">作者: <span class="value">{{ book.author }}</span></div>
+              <div>
+               <span class="product-label original-price">原價: <span class="value">{{ book.original_price }}</span></span>
+                <span class="product-label price">特價: <span class="value">{{ book.price }}</span></span>
+              </div>
             </div>
           </div>
         {% endfor %}

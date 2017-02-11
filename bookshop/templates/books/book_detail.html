@@ -4,7 +4,7 @@
   <!-- breadcrumb -->
   <div class="row hidden-xs">
     <div class="col-xs-12">
-      <ol class="breadcrumb">
+      <ol class="breadcrumb site-breadcrumb">
         <li><a href="{% url 'home' %}">分類</a></li>
         <li><a href="{% url 'book_list' category=book.category.name %}">{{ book.category }}</a></li>
         <li class="active">{{ book.name }}</li>
@@ -12,34 +12,36 @@
     </div>
   </div><!-- end of breadcrumb -->
 
-  <!-- product info -->
-  <div class="row">
-    <!-- product photo -->
-    <div class="col-sm-4 col-md-3 hidden-xs">
-      <div class="thumbnail">
-        <img src="http://placehold.it/180x240">
-      </div>
-    </div><!-- end of product photo-->
+  <div class="product product-detail">
+    <!-- product info -->
+    <div class="row">
+      <!-- product photo -->
+      <div class="col-sm-4 col-md-3 hidden-xs">
+        <div class="thumbnail">
+          <img src="http://placehold.it/180x240">
+        </div>
+      </div><!-- end of product photo-->
 
-    <div class="col-md-7">
-      <h1 class="h3">{{ book.name }}</h1>
-      <div>
-        <ul class="list-unstyled">
-          <li>特價: {{ book.original_price }}</li>
-          <li>原價: {{ book.original_price }}</li>
-          <li>作者:{{ book.author }}</li>
-          <li>分類:{{ book.category }}</li>
-          <li>出版社:{{ book.publisher }}</li>
-          <li>ISBN:{{ book.isbn }}</li>
-        </ul>
+      <div class="col-md-7">
+        <h1 class="h3">{{ book.name }}</h1>
+        <div>
+          <ul class="list-unstyled product-detail--info">
+            <li class="product-info price"> 特價: <span class="value">{{ book.original_price }}<span></li>
+            <li class="product-info original-price"> 原價: <span class="value">{{ book.original_price }}<span></li>
+            <li class="product-info"> 作者: <span class="value">{{ book.author }}</span></li>
+            <li class="product-info"> 分類: <span class="value">{{ book.category }}</span></li>
+            <li class="product-info"> 出版社: <span class="value">{{ book.publisher }}</span></li>
+            <li class="product-info"> ISBN: <span class="value">{{ book.isbn }}</span></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-lg btn-primary">加入購物車</a>
+        <a href="#" class="btn btn-link">立刻結帳</a>
       </div>
-      <a href="#" class="btn btn-lg btn-primary">加入購物車</a>
-      <a href="#" class="btn btn-link">立刻結帳</a>
-    </div>
-    <div class="col-xs-12">
-      <hr>
-    </div>
-  </div><!-- end of product info-->
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div><!-- end of product info-->
+  </div>
 
   <!-- description-->
   <div class="row">
