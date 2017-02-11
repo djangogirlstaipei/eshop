@@ -2,21 +2,7 @@
 
 {% block content %}
   <div class="row">
-
-    <div class="col-md-12">
-
-      <!-- show where am I -->
-      {% if view.kwargs.category %}
-        <h3> {{ view.kwargs.category }}</h3>
-      {% endif %}
-
-    </div>
-
-  </div>
-
-  <div class="row">
-
-    <div class="col-md-3">
+    <div class="col-sm-3 col-lg-2 hidden-xs">
       <!-- category list -->
       <div class="list-group">
         {% for category in view.categories %}
@@ -27,14 +13,14 @@
       </div>
     </div>
 
-    <div class="col-md-9">
+    <div class="col-sm-9 col-lg-offset-1">
       {% if view.kwargs.category %}
         <h3 class="h4"> {{ view.kwargs.category }}</h3>
       {% endif %}
       <!-- product list -->
       <div class="row">
         {% for book in book_list %}
-        <div class="col-md-4">
+        <div class="col-sm-6 col-md-4 col-lg-3">
             <div style="height: 350px;">
               <a href="{% url 'book_detail' pk=book.pk %}" class="thumbnail">
                 <img src="http://placehold.it/150x200">

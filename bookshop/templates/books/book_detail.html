@@ -2,8 +2,8 @@
 
 {% block content %}
   <!-- breadcrumb -->
-  <div class="row">
-    <div class="col-md-12">
+  <div class="row hidden-xs">
+    <div class="col-xs-12">
       <ol class="breadcrumb">
         <li><a href="{% url 'home' %}">分類</a></li>
         <li><a href="{% url 'book_list' category=book.category.name %}">{{ book.category }}</a></li>
@@ -15,7 +15,7 @@
   <!-- product info -->
   <div class="row">
     <!-- product photo -->
-    <div class="col-md-3">
+    <div class="col-sm-4 col-md-3 hidden-xs">
       <div class="thumbnail">
         <img src="http://placehold.it/180x240">
       </div>
@@ -36,7 +36,7 @@
       <a href="#" class="btn btn-lg btn-primary">加入購物車</a>
       <a href="#" class="btn btn-link">立刻結帳</a>
     </div>
-    <div class="col-md-12">
+    <div class="col-xs-12">
       <hr>
     </div>
   </div><!-- end of product info-->
