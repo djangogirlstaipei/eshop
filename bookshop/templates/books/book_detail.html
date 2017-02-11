@@ -1,24 +1,52 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="row">
+  <!-- breadcrumb -->
+  <div class="row">
+    <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="{% url 'home' %}">分類</a></li>
+        <li><a href="{% url 'book_list' category=book.category.name %}">{{ book.category }}</a></li>
+        <li class="active">{{ book.name }}</li>
+      </ol>
+    </div>
+  </div><!-- end of breadcrumb -->
 
-      <div class="col-xs-6 col-xs-offset-3">
+  <!-- product info -->
+  <div class="row">
+    <!-- product photo -->
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <img src="http://placehold.it/180x240">
+      </div>
+    </div><!-- end of product photo-->
 
-        <div class="page-header"> <h1>{{ book.name}} <small>{{ book.author }}, ${{ book.price }}</small></h1> </div>
-
-        <ul>
-          <li> 分類 {{ book.category}}
-          <li> 原價 {{ book.original_price }}
-          <li> 狀態 {{ book.get_status_display}}
-          <li> 出版社 {{ book.publisher }}
+    <div class="col-md-7">
+      <h1 class="h3">{{ book.name }}</h1>
+      <div>
+        <ul class="list-unstyled">
+          <li>特價: {{ book.original_price }}</li>
+          <li>原價: {{ book.original_price }}</li>
+          <li>作者:{{ book.author }}</li>
+          <li>分類:{{ book.category }}</li>
+          <li>出版社:{{ book.publisher }}</li>
+          <li>ISBN:{{ book.isbn }}</li>
         </ul>
+      </div>
+      <a href="#" class="btn btn-lg btn-primary">加入購物車</a>
+      <a href="#" class="btn btn-link">立刻結帳</a>
+    </div>
+    <div class="col-md-12">
+      <hr>
+    </div>
+  </div><!-- end of product info-->
 
-        <div class="panel panel-primary">
-          <div class="panel-body"> {{ book.description }} </div>
-        </div>
+  <!-- description-->
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div> {{ book.description|linebreaksbr }} </div>
+    </div>
+  </div>
+  <!-- end of description -->
 
-      </div><!-- end of offset 3-->
-
-    </div><!-- end of row-->
 {% endblock content %}

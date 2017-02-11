@@ -3,7 +3,7 @@
 {% block content %}
   <div class="row">
 
-    <div class="col-xs-12">
+    <div class="col-md-12">
 
       <!-- show where am I -->
       {% if view.kwargs.category %}
@@ -16,64 +16,58 @@
 
   <div class="row">
 
-    <div class="col-xs-3">
+    <div class="col-md-3">
       <!-- category list -->
-      <ul class="list-group">
+      <div class="list-group">
         {% for category in view.categories %}
-          <li class="list-group-item">
-            <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
-          </li>
+          <a class="list-group-item {% if view.kwargs.category == category.name %}active{% endif %}"
+             href="{% url 'book_list' category=category.name %}"> {{ category.name }}
+          </a>
         {% endfor %}
-      </ul>
+      </div>
     </div>
 
-    <div class="col-xs-9">
-      <!-- book list -->
-      {% for book in book_list %}
-        <div class="panel panel-default">
-
-          <div class="panel-heading">
-            <h3 class="panel-title">
-              <a href="{% url 'book_detail' pk=book.pk %}">
-                {{ book.name}} | {% if book.author %} 作者: {{ book.author }} {% endif %}
+    <div class="col-md-9">
+      {% if view.kwargs.category %}
+        <h3 class="h4"> {{ view.kwargs.category }}</h3>
+      {% endif %}
+      <!-- product list -->
+      <div class="row">
+        {% for book in book_list %}
+        <div class="col-md-4">
+            <div style="height: 350px;">
+              <a href="{% url 'book_detail' pk=book.pk %}" class="thumbnail">
+                <img src="http://placehold.it/150x200">
               </a>
-            </h3>
+              <a href="{% url 'book_detail' pk=book.pk %}">{{ book.name|truncatechars:25 }}</a>
+              <div>作者: {{ book.author }}</div>
+              <div> 原價: {{ book.original_price }} 特價: {{ book.price }}</div>
+            </div>
           </div>
+        {% endfor %}
+      </div><!-- end of product list -->
 
-          <div class="panel-body">
-            <a href="{% url 'book_detail' pk=book.pk %}">
-              {{ book.description|truncatechars:50 }}
-            </a>
-          </div>
-
-          <div class="panel-footer">
-            {{ book.publisher}}, {{ book.price}}, {{ book.isbn}}
-          </div>
-
-        </div> <!-- end of panel--->
-      {% endfor %}
-
-      <!-- pagination -->
       {% if is_paginated %}
-      <div class="pagination">
+      <!-- pagination -->
+      <div class="row">
+        <nav>
+          <ul class="pager">
+            {% if page_obj.has_previous %}
+              <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&larr;</span> 上一頁</a></li>
+            {% else %}
+              <li class="disabled"><a href="#"><span aria-hidden="true">&larr;</span> 上一頁</a></li>
+            {% endif %}
 
-        <span class="step-links">
+            <li> {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</li>
 
-          {% if page_obj.has_previous %}
-            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
-          {% endif %}
-
-          <span class="current">
-              Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-          </span>
-
-          {% if page_obj.has_next %}
-            <a href="?page={{ page_obj.next_page_number }}">next</a>
-          {% endif %}
-
-        </span>
-
-      </div> <!-- end of pagination--->
+            {% if page_obj.has_next %}
+              <li><a href="?page={{ page_obj.next_page_number }}">下一頁<span aria-hidden="true">&rarr;</span></a></li>
+            {% else %}
+              <li class="disabled"><a href="#">下一頁<span aria-hidden="true">&rarr;</span></a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </div><!-- end of pagination--->
       {% endif %}
 
     </div>
