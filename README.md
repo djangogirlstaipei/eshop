@@ -17,9 +17,9 @@
 
 [第四堂 - 雲端部署](https://dl.dropboxusercontent.com/u/3991557/Django%20Deployment.pdf)
 
-[第五堂 - 前端美化]()
+[第五堂 - 前端美化](https://www.dropbox.com/s/76ruiqc5unzb38k/EShop%20Bootstrap.pdf?dl=0)
 
-[第六堂 - 會員管理]()
+[第六堂 - 會員管理](https://app.box.com/s/6z6q1odrft6sbhbi8ptirnmsv92sn9q7)
 
 
 ## Getting Started
