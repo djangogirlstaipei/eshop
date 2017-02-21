@@ -1,42 +1,54 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+{% block content %}
+  <!-- breadcrumb -->
+  <div class="row hidden-xs">
+    <div class="col-xs-12">
+      <ol class="breadcrumb site-breadcrumb">
+        <li><a href="{% url 'home' %}">分類</a></li>
+        <li><a href="{% url 'book_list' category=book.category.name %}">{{ book.category }}</a></li>
+        <li class="active">{{ book.name }}</li>
+      </ol>
+    </div>
+  </div><!-- end of breadcrumb -->
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
-
-
-  <div class="container">
-
+  <div class="product product-detail">
+    <!-- product info -->
     <div class="row">
-
-      <div class="col-xs-6 col-xs-offset-3">
-
-        <div class="page-header"> <h1>{{ book.name}} <small>{{ book.author }}, ${{ book.price }}</small></h1> </div>
-
-        <ul>
-          <li> 分類 {{ book.category}}
-          <li> 原價 {{ book.original_price }}
-          <li> 狀態 {{ book.get_status_display}}
-          <li> 出版社 {{ book.publisher }}
-        </ul>
-
-        <div class="panel panel-primary">
-          <div class="panel-body"> {{ book.description }} </div>
+      <!-- product photo -->
+      <div class="col-sm-4 col-md-3 hidden-xs">
+        <div class="thumbnail">
+          <img src="http://placehold.it/180x240">
         </div>
+      </div><!-- end of product photo-->
 
-      </div><!-- end of offset 3-->
+      <div class="col-md-7">
+        <h1 class="h3">{{ book.name }}</h1>
+        <div>
+          <ul class="list-unstyled product-detail--info">
+            <li class="product-info price"> 特價: <span class="value">{{ book.original_price }}<span></li>
+            <li class="product-info original-price"> 原價: <span class="value">{{ book.original_price }}<span></li>
+            <li class="product-info"> 作者: <span class="value">{{ book.author }}</span></li>
+            <li class="product-info"> 分類: <span class="value">{{ book.category }}</span></li>
+            <li class="product-info"> 出版社: <span class="value">{{ book.publisher }}</span></li>
+            <li class="product-info"> ISBN: <span class="value">{{ book.isbn }}</span></li>
+          </ul>
+        </div>
+        <a href="#" class="btn btn-lg btn-primary">加入購物車</a>
+        <a href="#" class="btn btn-link">立刻結帳</a>
+      </div>
+      <div class="col-xs-12">
+        <hr>
+      </div>
+    </div><!-- end of product info-->
+  </div>
 
-    </div><!-- end of row-->
-  </div><!-- end of container-->
+  <!-- description-->
+  <div class="row">
+    <div class="col-md-offset-2 col-md-8">
+      <div> {{ book.description|linebreaksbr }} </div>
+    </div>
+  </div>
+  <!-- end of description -->
 
-</body>
+{% endblock content %}

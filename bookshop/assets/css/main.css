@@ -1,0 +1,64 @@
+/* site component */
+.site-navbar .navbar-brand {
+    padding-right: 50px;
+}
+
+.site-main-nav.nav li > a {
+    padding: 15px 30px;
+}
+
+.sidebar-category {
+    margin-top: 45px;
+}
+
+.site-breadcrumb {
+    background-color: transparent;
+}
+
+/* Product */
+
+.product .thumbnail {
+    border: none;
+}
+
+.product .product-info {
+    color: #333;
+}
+
+.product .original-price .value {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.product .price .value {
+    color: red;
+}
+
+
+/* Product Brief */
+
+.product.product-brief {
+    height: 350px;
+}
+
+
+/* Product Detail */
+
+.product-detail .product-detail--main {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dotted #ddd;
+}
+
+.product-detail .product-detail--info {
+    padding-left: 15px;
+
+}
+
+.product-detail .price .value {
+    font-size: 1.4em;
+}
+
+.product-detail .thumbnail {
+    margin-top: 10px;
+}

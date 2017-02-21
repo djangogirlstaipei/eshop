@@ -1,101 +1,65 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title></title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{% extends 'base.html' %}
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-</head>
-<body>
-
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-xs-12">
-
-        <!-- show where am I -->
-        {% if view.kwargs.category %}
-          <h3> {{ view.kwargs.category }}</h3>
-        {% endif %}
-
+{% block content %}
+  <div class="row">
+    <div class="col-sm-3 col-lg-2 hidden-xs">
+      <!-- category list -->
+      <div class="list-group sidebar-category">
+        {% for category in view.categories %}
+          <a class="list-group-item {% if view.kwargs.category == category.name %}active{% endif %}"
+             href="{% url 'book_list' category=category.name %}"> {{ category.name }}
+          </a>
+        {% endfor %}
       </div>
-
     </div>
 
-    <div class="row">
-
-      <div class="col-xs-3">
-        <!-- category list -->
-        <ul class="list-group">
-          {% for category in view.categories %}
-            <li class="list-group-item">
-              <a href="{% url 'book_list' category=category.name %}"> {{ category.name }} </a>
-            </li>
-          {% endfor %}
-        </ul>
-      </div>
-
-      <div class="col-xs-9">
-        <!-- book list -->
+    <div class="col-sm-9 col-lg-offset-1">
+      {% if view.kwargs.category %}
+        <h3 class="h4"> {{ view.kwargs.category }}</h3>
+      {% endif %}
+      <!-- product list -->
+      <div class="row">
         {% for book in book_list %}
-          <div class="panel panel-default">
-
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <a href="{% url 'book_detail' pk=book.pk %}">
-                  {{ book.name}} | {% if book.author %} 作者: {{ book.author }} {% endif %}
-                </a>
-              </h3>
-            </div>
-
-            <div class="panel-body">
-              <a href="{% url 'book_detail' pk=book.pk %}">
-                {{ book.description|truncatechars:50 }}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="product product-brief">
+              <a href="{% url 'book_detail' pk=book.pk %}" class="thumbnail">
+                <img src="http://placehold.it/150x200">
               </a>
+              <a href="{% url 'book_detail' pk=book.pk %}">{{ book.name|truncatechars:25 }}</a>
+              <div class="product-label author">作者: <span class="value">{{ book.author }}</span></div>
+              <div>
+               <span class="product-label original-price">原價: <span class="value">{{ book.original_price }}</span></span>
+                <span class="product-label price">特價: <span class="value">{{ book.price }}</span></span>
+              </div>
             </div>
-
-            <div class="panel-footer">
-              {{ book.publisher}}, {{ book.price}}, {{ book.isbn}}
-            </div>
-
-          </div> <!-- end of panel--->
+          </div>
         {% endfor %}
+      </div><!-- end of product list -->
 
-        <!-- pagination -->
-        {% if is_paginated %}
-        <div class="pagination">
-
-          <span class="step-links">
-
+      {% if is_paginated %}
+      <!-- pagination -->
+      <div class="row">
+        <nav>
+          <ul class="pager">
             {% if page_obj.has_previous %}
-              <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+              <li><a href="?page={{ page_obj.previous_page_number }}"><span aria-hidden="true">&larr;</span> 上一頁</a></li>
+            {% else %}
+              <li class="disabled"><a href="#"><span aria-hidden="true">&larr;</span> 上一頁</a></li>
             {% endif %}
 
-            <span class="current">
-                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
-            </span>
+            <li> {{ page_obj.number }} / {{ page_obj.paginator.num_pages }}</li>
 
             {% if page_obj.has_next %}
-              <a href="?page={{ page_obj.next_page_number }}">next</a>
+              <li><a href="?page={{ page_obj.next_page_number }}">下一頁<span aria-hidden="true">&rarr;</span></a></li>
+            {% else %}
+              <li class="disabled"><a href="#">下一頁<span aria-hidden="true">&rarr;</span></a></li>
             {% endif %}
-
-          </span>
-
-        </div> <!-- end of pagination--->
-        {% endif %}
-
-      </div>
+          </ul>
+        </nav>
+      </div><!-- end of pagination--->
+      {% endif %}
 
     </div>
 
   </div>
-
-</body>
-</html>
+{% endblock content %}
