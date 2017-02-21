@@ -22,6 +22,10 @@
 [第六堂 - 會員管理](https://app.box.com/s/6z6q1odrft6sbhbi8ptirnmsv92sn9q7)
 
 
+## How to connect us
+taipei@djangogirls.org
+
+
 ## Getting Started
 
 ### Set up a Virtual Environment
@@ -72,6 +76,7 @@ Now you’re all set!
 
 Then you can open the website: [http://localhost:8000/](http://localhost:8000/)
 
+
 ### Enter the Django Admin
 
 To log in, you need to create a superuser:
@@ -84,3 +89,4 @@ After setup the username and password, you can login: [http://localhost:8000/adm
 
 * [Deploy to heroku](HEROKU.md)
 * [Deploy to self-hosted server](DEPLOY.md)
+
